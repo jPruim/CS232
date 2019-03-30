@@ -12,7 +12,7 @@ Prompt::Prompt(){
 //get()
 //return the string from of path to current dir
 string Prompt::get() const {
-	return string(myFullPath)+"/$";
+	return string(myFullPath)+"$";
 }
 //destructor
 Prompt::~Prompt(){
