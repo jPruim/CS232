@@ -5,7 +5,10 @@
 #include "Path.h"
 
 using namespace std;
-//get evironment paths and add to vector
+
+//define Path class Methods
+//Constructor 
+//gets evironment paths and add to vector
 Path::Path(){
 	myEnv = getenv("PATH");
 	if(myEnv == NULL){
@@ -31,13 +34,18 @@ Path::Path(){
 	
 
 }
+//Deconstructor 
+//deallocates memory, however c does this automatically for data types used
 Path::~Path(){
 	// myEnv self destructs as no call to new or malloc is used
 	//vectors self-destruct (based on how the class is made
 	//therefore no destructor is needed
 }
-
+//find() const
+//parameters: string& for program name
 //find a program by iterating through the path
+//returns index in PATH
+//returns -1 if not found
 int Path::find(const string& program) const {
 	DIR * currDir;
 	struct dirent *ent;
@@ -53,7 +61,10 @@ int Path::find(const string& program) const {
 	return -1; //return -1 if file not found
 
 }
+//getDirectory const
+//parameters: integer index i
 //returns the string name of the directory at index i
+//returns "" if outside of bounds
 string Path::getDirectory(int i) const{
 	if(i <0 ||i>= vecDir.size() ){return "";};
 	return vecDir[i].c_str();
