@@ -1,3 +1,5 @@
+#include "CommandLine.h"
+
 
 /*
  * Purpose: Construct a CommandLine by reading a command-line from in,
@@ -7,59 +9,57 @@
  * Outputs:
  *
  */
-#include "CommandLine.h"
+CommandLine::CommandLine()
+{
+	// calloc(): Allocates a block of memory for an attay of num elements,
+	// 				  each of them size bytes long, and inits all bits to zero
+	// free(): returns memory to the system
+	argc = 0;
+	argv = NULL;
+}
 
-using namespace std;
-
+/*
+ * Purpose: Construct a CommandLine by reading a command-line from in,
+ *          parsing it, and building instance variables for argc and argv
+ *          (you may find the calloc() and free() system calls to be of use here).
+ * Inputs: istream& in
+ * Outputs:
+ *
+ */
 CommandLine::CommandLine(std::istream &in)
 {
 	// calloc(): Allocates a block of memory for an attay of num elements,
 	// 				  each of them size bytes long, and inits all bits to zero
 	// free(): returns memory to the system
-	char ** ArgVector = new char*; // init dummy argv
+
 	argc = 0;					  	// init argc
 	int const size = 256; 		  	// default size for input char array
-	char* input = new char[size]; 	// input char array
-	char* cmpr = new char[size];  	// comparison char array
-	char *point;
-	if (in)
+	char ** ArgVector = new char*[size]; // init dummy argv
+	char* input= new char[size]; 	// input char array
+	char* point;
+
+	in.getline(input, size); // grab input
+	if(input != NULL)
 	{
-		in.getline(input, size); // grab input
+		cout << input << endl;
 
-		strcpy(input, cmpr); // compare strings
-
-		point = strtok(cmpr, " "); // create pointer
+		point = strtok(input, " "); // create pointer
 
 		while(point != NULL)
 		{
 			ArgVector[argc] = point; 	// set argv to proper command
+			cout<< point<< endl;
 			argc++; 					// increment argc
 			point = strtok(NULL, " ");	// move pointer
 		}
 	}
-
 	argv = ArgVector;
-	delete[] ArgVector;
-	in.ignore();
-}
-#include "CommandLine.h"
-
-/*
- * Purpose: Empty inital Constructor
- * Inputs: NULL
- * Outputs:
- *
- */
-CommandLine::CommandLine()
-{
-	argc = 0;
-	argv = NULL;
 }
 
 
 
 CommandLine::~CommandLine() {
-	delete[] argv; // deallocates the Arg Vector
+	//delete[] argv; // deallocates the Arg Vector (however it auto deallocates so nothing to be deleted, causes an error
 }
 
 /*
@@ -119,7 +119,8 @@ bool CommandLine::noAmpersand() const
 	bool noAmp = true;
 	for(int i = 0; i++; i<argc)
 	{
-		if (argv[i] == "&")
+		string s = argv[i];
+		if (s == "&")
 		{
 			noAmp=false;
 		}

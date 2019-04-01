@@ -10,11 +10,11 @@
 using namespace std;
 
 JMShell::JMShell() {
-	cout<<"Started JMShell constructor"<<endl;
+	//cout<<"Started JMShell constructor"<<endl;
 	myPath = Path();
 	myPrompt = Prompt();
 	CL = CommandLine();
-	cout<<"Finished JMShell constructor"<<endl;
+	//cout<<"Finished JMShell constructor"<<endl;
 
 }
 
@@ -27,13 +27,14 @@ JMShell::~JMShell() {
 
 void JMShell::run()
 {
-	while(1){
+	//while(1){
 		cout<<shellPromptFormat()<<flush;
 		CL = CommandLine(cin);
+		cout<<"Input argc is: "<<CL.getArgCount()<<endl;
 		cout<<"Input argv is:"<<flush;
 		cout<<CL.getArgVector(0)<<flush;
 		cout<< ":"<<endl;
-	}
+	//}
 }
 string JMShell::shellPromptFormat(){
 	return myPrompt.get()+"$";

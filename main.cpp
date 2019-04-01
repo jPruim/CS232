@@ -24,6 +24,7 @@ void runTests(){
 	cout<< "Prompt Test"<<endl;
 	cout<< myPrompt.get()<<flush;
 	cout<<"~~check for empty spaces~~"<<endl;
+	cout<<"Tests Done"<<endl;
 
 
 }
