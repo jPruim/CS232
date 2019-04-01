@@ -5,14 +5,17 @@
 */
 
 
-#include "Path.h"
-#include "Prompt.h"
+#include "JMShell.h"
+
 
 using namespace std;
+/*runs tests
+* meant to be commmented out in main for actual use
+*/
+void runTests(){
 
-//Create and run the shell (with some "tests")
-int main(){
 	Path myPath = Path();
+	
 	Prompt myPrompt = Prompt();
 	//simple path tests
 	cout<<"Finding location of ls"<<endl;
@@ -21,4 +24,17 @@ int main(){
 	cout<< "Prompt Test"<<endl;
 	cout<< myPrompt.get()<<flush;
 	cout<<"~~check for empty spaces~~"<<endl;
+
+
 }
+//Create and run the shell (with some "tests")
+int main(){
+	//runTests();
+	cout<<"Starting Constructor"<<endl;
+	JMShell myJM = JMShell();
+	runTests();
+	myJM.run();
+
+	
+}
+

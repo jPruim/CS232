@@ -5,18 +5,17 @@
 
 #include "Prompt.h"
 
-//constructor
-//(declares myFullPath)
+//constructor (declares myFullPath)
 Prompt::Prompt(){
 	getcwd(myFullPath, FILENAME_MAX);
 }
-//get() const
-//return the string from of path to current dir (with added $)
+//get()
+//return the string from of path to current dir
 string Prompt::get() const {
-	return string(myFullPath)+"$";
+	return string(myFullPath);
 }
 //destructor
-//deallocates memory, c++ does this automatically for everything involved
 Prompt::~Prompt(){
 	//everything self destructs
+	//array is fixed size
 }
