@@ -21,6 +21,7 @@ using namespace std;
 class CommandLine
 {
 	public:
+	string toString();
 	CommandLine();
 	CommandLine(std::istream &in);
 	~CommandLine();

@@ -32,28 +32,45 @@ CommandLine::CommandLine(std::istream &in)
 	// 				  each of them size bytes long, and inits all bits to zero
 	// free(): returns memory to the system
 
-	argc = 0;					  	// init argc
-	int const size = 256; 		  	// default size for input char array
-	char ** ArgVector = new char*[size]; // init dummy argv
-	char* input= new char[size]; 	// input char array
+//	argc = 0;					  	// init argc
+//	int const size = 256; 		  	// default size for input char array
+//	char ** ArgVector = new char*[size]; // init dummy argv
+//	for(int i = 0; i < size; i++){ArgVector[i] = 0;};
+//	char* input= new char[size]; 	// input char array
+//	char* point;
+//
+//	in.getline(input, size); // grab input
+//	if(input != NULL)
+//	{
+//		point = strtok(input, " "); // create pointer
+//
+//		while(point != NULL)
+//		{
+//			ArgVector[argc] = point; 	// set argv to proper command
+//			argc++; 					// increment argc
+//			point = strtok(NULL, " ");	// move pointer
+//		}
+//	}
+//
+//	argv = ArgVector;
+	const int size = 256;
+	char* input= new char[size];
 	char* point;
-
+	argc = 0;
+	argv = (char**)calloc(size,sizeof(char*));
 	in.getline(input, size); // grab input
 	if(input != NULL)
 	{
-		cout << input << endl;
-
 		point = strtok(input, " "); // create pointer
 
 		while(point != NULL)
 		{
-			ArgVector[argc] = point; 	// set argv to proper command
-			cout<< point<< endl;
+			argv[argc] = string(point).c_str(); 	// set argv to proper command
+			//cout<<point<<endl;
 			argc++; 					// increment argc
 			point = strtok(NULL, " ");	// move pointer
 		}
 	}
-	argv = ArgVector;
 }
 
 
@@ -128,4 +145,8 @@ bool CommandLine::noAmpersand() const
 	return noAmp;
 }
 
-
+string CommandLine::toString(){
+	for(int i = 0; i < argc; i++){
+		cout<<"-"<<argv[i]<<"-"<<endl;
+	}
+}

@@ -30,10 +30,10 @@ void runTests(){
 }
 //Create and run the shell (with some "tests")
 int main(){
-	//runTests();
+	runTests();
 	cout<<"Starting Constructor"<<endl;
 	JMShell myJM = JMShell();
-	runTests();
+	
 	myJM.run();
 
 	
