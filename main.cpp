@@ -20,6 +20,9 @@ void runTests(){
 	//simple path tests
 	cout<<"Finding location of ls"<<endl;
 	cout<<myPath.getDirectory(myPath.find("ls"))<<endl; //should print the location of ls;
+	//cout<<myPath.getDirectory(0)<<endl; //should first directory in path
+	cout<<"Finding index of non-existent function (-1)"<<endl;
+	cout<<myPath.find("alsdf")<<endl;
 	//simple prompt test
 	cout<< "Prompt Test"<<endl;
 	cout<< myPrompt.get()<<flush;
@@ -30,10 +33,10 @@ void runTests(){
 }
 //Create and run the shell (with some "tests")
 int main(){
-	//runTests();
+	runTests();
 	cout<<"Starting Constructor"<<endl;
 	JMShell myJM = JMShell();
-	runTests();
+	
 	myJM.run();
 
 	

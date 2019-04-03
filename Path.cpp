@@ -41,14 +41,18 @@ Path::~Path(){
 int Path::find(const string& program) const {
 	DIR * currDir;
 	struct dirent *ent;
+	//cout<<vecDir.size()<<endl;
+	//cout<<vecDir[18]<<endl;
 	for(int i = 0;i < vecDir.size(); i++){
 		currDir = opendir(vecDir[i].c_str());
-		while((ent = readdir(currDir))!= NULL){
-			if (ent->d_type == DT_REG) {  // regular file
-      				if (ent->d_name == program) {return i;}; //return index of program location
-    			}
-		}
-		closedir(currDir);	
+		if(currDir){//check if folder exists (some don't namely #18)
+			while((ent = readdir(currDir))!= NULL){
+				if (ent->d_type == DT_REG) {  // regular file
+	      				if (ent->d_name == program) {closedir(currDir);return i;}; //return index of program location
+	    			}
+			}
+			closedir(currDir);
+		}	
 	}
 	return -1; //return -1 if file not found
 

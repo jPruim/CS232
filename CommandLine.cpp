@@ -41,25 +41,34 @@ CommandLine::CommandLine(std::istream &in)
 	in.getline(input, size); // grab input
 	if(input != NULL)
 	{
-		cout << input << endl;
-
 		point = strtok(input, " "); // create pointer
 
 		while(point != NULL)
 		{
 			ArgVector[argc] = point; 	// set argv to proper command
-			cout<< point<< endl;
 			argc++; 					// increment argc
+			//cout << point << endl;
 			point = strtok(NULL, " ");	// move pointer
 		}
 	}
+	argv = new char*;
 	argv = ArgVector;
+	/*
+	ArgVector[argc] = NULL;
+	argv= new char*[argc+1];
+	int len = argc++;
+	for (int i =0; i++; i<argc)
+	{
+		argv[i] = ArgVector[i];
+		//cout<<  argv[i] << endl;
+	}
+	*/
 }
 
 
 
 CommandLine::~CommandLine() {
-	//delete[] argv; // deallocates the Arg Vector (however it auto deallocates so nothing to be deleted, causes an error
+	delete[] argv; // deallocates the Arg Vector; (however it autodeallocates so nothing to be done)
 }
 
 /*
@@ -127,5 +136,4 @@ bool CommandLine::noAmpersand() const
 	}
 	return noAmp;
 }
-
 
