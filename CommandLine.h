@@ -19,7 +19,7 @@
 
 using namespace std;
 class CommandLine
-{
+{	
 	public:
 	CommandLine();
 	CommandLine(std::istream &in);
@@ -32,6 +32,7 @@ class CommandLine
 	private:
 	int argc;
 	char** argv;
+	string myInput;
 };
 
 #endif /* COMMANDLINE_H_ */

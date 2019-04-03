@@ -15,6 +15,10 @@
 #include "Prompt.h"
 #include "CommandLine.h"
 #include <sstream>
+#include <unistd.h>
+#include <sys/wait.h>
+
+
 
 using namespace std;
 
@@ -22,11 +26,13 @@ class JMShell {
 	private:
 	Path myPath;
 	Prompt myPrompt;
-	CommandLine CL;
+	//CommandLine *CL;
 
 	public:
+	void analyzeFun(CommandLine *commL, string cmd);
 	string shellPromptFormat();
 	JMShell();
+	void systemComm(CommandLine *CL, int index);
 	virtual ~JMShell();
 	void run();
 };
